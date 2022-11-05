@@ -27,6 +27,11 @@ public class DroneController implements DroneAPI {
     }
 
     @Override
+    public ResponseEntity<DroneDTO> getDroneBySerialNo(String serialNo) {
+        return new ResponseEntity<>(droneService.getDroneBySerialNo(serialNo), HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<DroneDTO> registerDrone(@Valid DroneDTO droneDTO) {
         return new ResponseEntity<>(droneService.registerDrone(droneDTO),HttpStatus.OK);
     }
