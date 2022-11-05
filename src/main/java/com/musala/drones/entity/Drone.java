@@ -12,7 +12,7 @@ public class Drone {
     private String model;
     private Double weightLimit;
     private Double batteryCapacity;
-    private String state;
+    private Enum state;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST
@@ -24,7 +24,7 @@ public class Drone {
 
     public Drone() {}
 
-    public Drone(String serialNo, String model, Double weightLimit, Double batteryCapacity, String state) {
+    public Drone(String serialNo, String model, Double weightLimit, Double batteryCapacity, Enum state) {
         this.serialNo = serialNo;
         this.model = model;
         this.weightLimit = weightLimit;
@@ -72,11 +72,11 @@ public class Drone {
         this.batteryCapacity = batteryCapacity;
     }
 
-    public String getState() {
+    public Enum getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(Enum state) {
         this.state = state;
     }
 

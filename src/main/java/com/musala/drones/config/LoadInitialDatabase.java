@@ -4,6 +4,7 @@ import com.musala.drones.entity.Drone;
 import com.musala.drones.entity.Medication;
 import com.musala.drones.repository.DroneRepository;
 import com.musala.drones.repository.MedicationRepository;
+import com.musala.drones.util.DroneStates;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -18,16 +19,16 @@ public class LoadInitialDatabase {
     CommandLineRunner initDatabase(DroneRepository droneRepository, MedicationRepository medicationRepository) {
         return args -> {
             //pre-loading drones into database
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE001", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE002", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE003", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE004", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE05", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE06", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE07", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE08", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE09", "TRANSPORTER", 500.0, 100.0, "IDLE")));
-            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE10", "TRANSPORTER", 500.0, 100.0, "IDLE")));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE001", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE002", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE003", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE004", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE05", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE06", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE07", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE08", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE09", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
+            logger.info("PRE-LOADING-DRONES = " + droneRepository.save(new Drone("DRONE10", "TRANSPORTER", 500.0, 100.0, DroneStates.IDLE)));
 
             //pre-loading medication into database
             logger.info("PRE-LOADING-DRONES = " + medicationRepository.save(new Medication("Amlodipine", 200.0, "MED-01-01", null)));
