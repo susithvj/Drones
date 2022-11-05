@@ -1,9 +1,9 @@
 package com.musala.drones.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.Objects;
+import com.musala.drones.exceptions.OverWeightException;
+
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class Drone {
@@ -13,6 +13,14 @@ public class Drone {
     private Double weightLimit;
     private Double batteryCapacity;
     private String state;
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST
+            })
+    @JoinTable(name = "drone_medication",
+            joinColumns = { @JoinColumn(name = "drone_id")},
+            inverseJoinColumns = { @JoinColumn(name = "medication_id")})
+    private List<Medication> medications = new ArrayList<>();
 
     public Drone() {}
 
@@ -70,6 +78,28 @@ public class Drone {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public List<Medication> getMedications() {
+        return medications;
+    }
+
+    public void setMedications(List<Medication> medications) {
+        if(validateWeight(medications)) {
+            if(medications!=null) this.medications.addAll(medications);
+        } else {
+            throw new OverWeightException("Drone weight limit is " + this.weightLimit);
+        }
+    }
+
+    private boolean validateWeight(List<Medication> medications){
+        if(medications==null) {return true;}
+        Double currentWeight = this.medications.stream().mapToDouble(Medication::getWeight).sum();
+        Double newWeight = medications.stream().mapToDouble(Medication::getWeight).sum();
+        if(this.weightLimit.doubleValue()>=(currentWeight.doubleValue() + newWeight.doubleValue())) {
+            return true;
+        }
+        return false;
     }
 
     @Override
