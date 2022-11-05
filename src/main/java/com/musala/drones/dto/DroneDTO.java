@@ -1,4 +1,4 @@
-package dto;
+package com.musala.drones.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
