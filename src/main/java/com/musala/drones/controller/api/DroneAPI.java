@@ -30,6 +30,9 @@ public interface DroneAPI {
     @GetMapping("/drones/all")
     ResponseEntity<List<DroneDTO>> getAllDrones();
 
+    @GetMapping("/drone/{serialNo}")
+    ResponseEntity<DroneDTO> getDroneBySerialNo(@PathVariable String serialNo);
+
     @Operation(summary = "Register a new drone")
     @PostMapping("/drone/register")
     ResponseEntity<DroneDTO> registerDrone(@Valid @RequestBody DroneDTO droneDTO);

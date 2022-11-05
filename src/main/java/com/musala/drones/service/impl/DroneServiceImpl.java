@@ -36,6 +36,11 @@ public class DroneServiceImpl implements DroneService {
     }
 
     @Override
+    public DroneDTO getDroneBySerialNo(String serialNo) {
+        return mapper.convert(droneRepository.getDroneBySerialNo(serialNo).get(), DroneDTO.class);
+    }
+
+    @Override
     public DroneDTO registerDrone(DroneDTO droneDTO) {
         if(!isDroneExist(droneDTO.getSerialNo())) {
             return mapper.convert(droneRepository.save(mapper.convert(droneDTO, Drone.class)), DroneDTO.class);

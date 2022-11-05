@@ -14,4 +14,5 @@ public interface DroneService {
 
     DroneDTO loadMedications(String droneSerialNo, List<MedicationDTO> medications);
 
+    DroneDTO getDroneBySerialNo(String serialNo);
 }
