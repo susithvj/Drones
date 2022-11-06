@@ -2,20 +2,31 @@ package com.musala.drones.controller.api;
 
 import com.musala.drones.dto.DroneDTO;
 import com.musala.drones.dto.MedicationDTO;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 @Tag(name = "Drones", description = "Drones API")
+@SecurityScheme(
+        name = "basicAuth", // can be set to anything
+        type = SecuritySchemeType.HTTP,
+        scheme = "basic"
+)
+@OpenAPIDefinition(
+        security = @SecurityRequirement(name = "basicAuth") // references the name defined in the line 3
+)
 @RequestMapping("/api/musalasoft/v1")
 public interface DroneAPI {
     @Operation(summary = "Get a drone by drone serial no")
