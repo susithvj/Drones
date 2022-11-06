@@ -1,6 +1,7 @@
 package com.musala.drones.entity;
 
 import com.musala.drones.exceptions.OverWeightException;
+import com.musala.drones.util.DroneStates;
 
 import javax.persistence.*;
 import java.util.*;
@@ -12,7 +13,7 @@ public class Drone {
     private String model;
     private Double weightLimit;
     private Double batteryCapacity;
-    private Enum state;
+    private DroneStates state;
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST
@@ -24,7 +25,7 @@ public class Drone {
 
     public Drone() {}
 
-    public Drone(String serialNo, String model, Double weightLimit, Double batteryCapacity, Enum state) {
+    public Drone(String serialNo, String model, Double weightLimit, Double batteryCapacity, DroneStates state) {
         this.serialNo = serialNo;
         this.model = model;
         this.weightLimit = weightLimit;
@@ -72,11 +73,11 @@ public class Drone {
         this.batteryCapacity = batteryCapacity;
     }
 
-    public Enum getState() {
+    public DroneStates getState() {
         return state;
     }
 
-    public void setState(Enum state) {
+    public void setState(DroneStates state) {
         this.state = state;
     }
 
@@ -93,7 +94,7 @@ public class Drone {
     }
 
     private boolean validateWeight(List<Medication> medications){
-        if(medications==null) {return true;}
+        if(medications==null || this.weightLimit==null) {return true;}
         Double currentWeight = this.medications.stream().mapToDouble(Medication::getWeight).sum();
         Double newWeight = medications.stream().mapToDouble(Medication::getWeight).sum();
         if(this.weightLimit.doubleValue()>=(currentWeight.doubleValue() + newWeight.doubleValue())) {
