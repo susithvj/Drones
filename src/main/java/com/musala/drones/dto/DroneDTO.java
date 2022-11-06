@@ -1,5 +1,6 @@
 package com.musala.drones.dto;
 
+import com.musala.drones.util.DroneStates;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,6 @@ public class DroneDTO {
     private String model;
     private Double weightLimit;
     private Double batteryCapacity;
-    private String state;
+    private DroneStates state;
     private List<MedicationDTO> medications;
 }

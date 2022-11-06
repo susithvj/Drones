@@ -32,6 +32,16 @@ public class DroneController implements DroneAPI {
     }
 
     @Override
+    public ResponseEntity<List<DroneDTO>> getAllAvailableDrones() {
+        return new ResponseEntity<>(droneService.getAllAvailableDronesByWeight(null), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<DroneDTO>> getAllAvailableDronesByWeight(@Valid List<MedicationDTO> medicationDTO) {
+        return new ResponseEntity<>(droneService.getAllAvailableDronesByWeight(medicationDTO), HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<DroneDTO> registerDrone(@Valid DroneDTO droneDTO) {
         return new ResponseEntity<>(droneService.registerDrone(droneDTO),HttpStatus.OK);
     }
